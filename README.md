@@ -84,6 +84,8 @@ source /opt/ros/humble/setup.sh
 ./build.sh jazzy
 ```
 
+Please follow [this instructions](https://github.com/Livox-SDK/Livox-SDK2/pull/85) for ```liblivox_lidar_sdk_shared not found``` error.
+
 
 ### 2.4 Run Livox ROS Driver 2:
 
