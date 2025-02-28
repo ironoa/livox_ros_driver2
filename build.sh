@@ -28,12 +28,21 @@ else
     exit
 fi
 echo "ROS version is: "$ROS_VERSION
+echo "ROS distro is: "$ROS_DISTRO
 
-# clear `build/` folder.
-# TODO: Do not clear these folders, if the last build is based on the same ROS version.
-rm -rf ../../build/
-rm -rf ../../devel/
-rm -rf ../../install/
+PREVIOUS_ROS="$(sed -n 's|.*/opt/ros/\([^"]*\)".*|\1|p' ../../install/setup.bash)"
+
+echo "PREVIOUS ROS DISTRO: $PREVIOUS_ROS"
+if [ "$ROS_DISTRO" != "$PREVIOUS_ROS" ]; then
+    echo "clear build folder"
+    # clear `build/` folder.
+    rm -rf ../../build/
+    rm -rf ../../devel/
+    rm -rf ../../install/
+else
+    echo "build folder already here"
+fi
+
 # clear src/CMakeLists.txt if it exists.
 if [ -f ../CMakeLists.txt ]; then
     rm -f ../CMakeLists.txt
