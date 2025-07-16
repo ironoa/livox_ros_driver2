@@ -68,10 +68,10 @@ fi
 pushd `pwd` > /dev/null
 if [ $ROS_VERSION = ${VERSION_ROS1} ]; then
     cd ../../
-    catkin_make -DROS_EDITION=${VERSION_ROS1}
+    catkin_make --only-pkg-with-deps livox_ros_driver2 -DROS_EDITION=${VERSION_ROS1}
 elif [ $ROS_VERSION = ${VERSION_ROS2} ]; then
     cd ../../
-    colcon build --cmake-args -DROS_EDITION=${VERSION_ROS2} -DDISTRO_ROS=${ROS_DISTRO} -Wno-dev
+    colcon build --packages-select livox_ros_driver2 --cmake-args -DROS_EDITION=${VERSION_ROS2} -DDISTRO_ROS=${ROS_DISTRO} -Wno-dev
 fi
 popd > /dev/null
 
